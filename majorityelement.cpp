@@ -35,7 +35,9 @@ int main()
         }
         if(count>size/2)
         {
+            
             cout<<"found"<<endl<<nums[i];
+            return 0;
         }
     }
 }
