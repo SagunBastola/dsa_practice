@@ -6,7 +6,7 @@ int main() {
     int arr[] = {1, 2, 3, 4};
     int size = sizeof(arr) / sizeof(int);
 
-    vector<int> vec(size);  // ✅ a single vector of ints
+    vector<int> vec(size);
 
     for (int i = 0; i < size; i++) {
         int prod = 1;
@@ -15,7 +15,7 @@ int main() {
                 prod *= arr[j];
             }
         }
-        vec[i] = prod;  // ✅ assign directly
+        vec[i] = prod;
     }
 
     for (int i = 0; i < size; i++) {
