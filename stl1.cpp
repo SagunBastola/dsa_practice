@@ -38,16 +38,21 @@ int main()
         cout<<vec1[i]<<" ";
     }
     cout<<endl;
+    //clockwise
     vector<int>:: iterator it;
     for(it=vec1.begin();it!=vec1.end();it++)
     {
         cout<<" "<<*it;
     }
+    //anticlockwise
     cout<<endl;
     for(auto it1=vec1.rbegin();it1!=vec1.rend();it1++)
     {
         cout<<" "<<*it1;
     }
+    cout<<endl;
+    vec1.clear();
+    cout<<vec1.empty()<<endl;
     return 0;
 
 }

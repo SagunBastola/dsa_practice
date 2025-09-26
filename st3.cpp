@@ -1,9 +1,9 @@
 #include<iostream>
-#include<list>//doubly ended linked list
+#include<deque>//doubly ended queue
 using namespace std;
 int main()
 {
-    list<int> l={1,2};
+    deque<int> l={1,2};
     for(int val : l)
     {
         cout<<val<<" ";
@@ -28,10 +28,7 @@ int main()
         cout<<val<<" ";
     }
     cout<<endl;
-    // cout<<l[5];  //random acess not possible
+    cout<<l[0]<<endl; //random acess not possible
     cout<<l.size()<<" " <<endl;
-    cout<<endl;
-    l.clear();
-    cout<<l.empty()<<endl;
     return 0;
 }
