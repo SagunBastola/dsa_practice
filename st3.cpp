@@ -28,7 +28,7 @@ int main()
         cout<<val<<" ";
     }
     cout<<endl;
-    cout<<l[0]<<endl; //random acess not possible
+    cout<<l[0]<<endl;
     cout<<l.size()<<" " <<endl;
     return 0;
 }
