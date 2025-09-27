@@ -20,7 +20,11 @@ int main() {
     }
     int missing=n*(n+1)/2-sum;
     sort(vec.begin(),vec.end(),greater<int>());
-    int k_th=vec[missing-1];
-    cout<<missing<<" "<<k_th;
+    if (missing <= vec.size() && missing > 0) {
+        int k_th = vec[missing - 1];
+        cout << missing << " " << k_th;
+    } else {
+    cout << missing << " " << "N/A";
+}
     return 0;
 }

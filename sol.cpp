@@ -23,7 +23,7 @@ public:
                 }
                 if(sum==target)
                 {
-                    return target;
+                    break;
                 }
                 else if((target-sum)<0)
                 {
