@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <string>
 using namespace std;
-
 class Solution {
   public:
     void helper(vector<vector<int>>& maze,int r,int c,string path,vector<string>& ans)
@@ -34,6 +33,7 @@ class Solution {
         vector<string> ans;
         string path;
         helper(maze,0,0,path,ans);
+        sort(ans.begin(),ans.end());
         return ans;
     }
 };
