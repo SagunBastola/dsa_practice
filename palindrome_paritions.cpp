@@ -34,15 +34,15 @@ public:
             if(palindrome(part))
             {
                 partitions.push_back(part);
-                helper(s.substr(i+1),partitions,ans)
-                partitions.pop_back;
+                helper(s.substr(i+1),ans,partitions);
+                partitions.pop_back();
             }
         }
     }
     vector<vector<string>> partition(string s) {
         vector<vector<string>> ans;
         vector<string> partitions;
-        helper(string s,ans,partitions);
+        helper(s,ans,partitions);
         return ans;
         
     }
