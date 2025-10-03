@@ -1,33 +1,72 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
 using namespace std;
-class Solution {
+class node
+{
 public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> vec;
-        vector<int> ans;
-        checker(nums,0,ans,vec);
-        return vec;
-    }
-    void checker(vector<int>& nums,int i,vector<int>& ans,vector<vector<int>>& vec)
+    int val;
+    node *next;
+    node(int a) : val(a),next(NULL)
     {
-        if(i==nums.size())
+    }
+};
+class list
+{
+private:
+    node *head;
+    node *tail;
+
+public:
+    list()
+    {
+        head = tail = NULL;
+    }
+    void push_front(int val)
+    {
+        if (head == NULL)
         {
-            vec.push_back(ans);
+            node *newnode = new node(val);
+            head = tail = newnode;
             return;
         }
-
-        ans.push_back(nums[i]);
-        checker(nums,i+1,ans,vec);
-
-        ans.pop_back();
-        checker(nums,i+1,ans,vec);
-
-
+        else
+        {
+            node *newnode = new node(val);
+            newnode->next = head;
+            head = newnode;
+            return;
+        }
     }
-
+    void push_back(int val)
+    {
+        node* newnode=new node(val);
+        if(head==NULL)
+        {
+            head = tail = newnode;
+        }
+        else
+        {
+            tail->next=newnode;
+            tail=newnode;
+        }
+    }
+    void print_list()
+    {
+        node* temp;
+        temp=head;
+        while(temp!=NULL)
+        {
+            cout<<temp->val<<" ";
+            temp=temp->next;
+        }
+        cout<<endl;
+    }
 };
 int main()
 {
-    
+    list l;
+    l.push_back(4);
+    l.push_back(6);
+    l.push_front(2);
+    l.print_list();
+    return 0;
 }

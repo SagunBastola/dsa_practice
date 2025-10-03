@@ -5,7 +5,7 @@ class node
 public:
     int val;
     node *next;
-    node(int a) : val(a)
+    node(int a) : val(a),next(NULL)
     {
     }
 };
@@ -42,26 +42,23 @@ public:
         if(head==NULL)
         {
             head = tail = newnode;
-            return;
         }
         else
         {
             tail->next=newnode;
             tail=newnode;
-            tail->next=NULL;
         }
     }
     void print_list()
     {
         node* temp;
         temp=head;
-        while(temp->next!=NULL)
+        while(temp!=NULL)
         {
             cout<<temp->val<<" ";
             temp=temp->next;
         }
         cout<<endl;
-        delete temp;
     }
 };
 int main()
