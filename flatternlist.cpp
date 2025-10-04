@@ -8,40 +8,50 @@ public:
     Node* child;
 };
 */
-class Node {
+#include <iostream>
+using namespace std;
+class Node
+{
 public:
     int val;
-    Node* prev;
-    Node* next;
-    Node* child;
+    Node *prev;
+    Node *next;
+    Node *child;
 };
 
-class Solution {
+class Solution
+{
 public:
-    Node* flatten(Node* head) {
-        if(head==NULL) return NULL;
+    Node* flatten(Node* head)
+    {
+        if (!head) return nullptr;
 
-        while(curr->next!=NULL)
+        Node* curr = head;
+
+        while (curr != nullptr)
         {
-            //flattern child nodes
-            if(curr->child != NULL)
+            if (curr->child != nullptr)
             {
-                Node* nextptr=curr->next;
-                curr->next=flatten(curr->child)
-                curr->next->prev=curr;
-                curr->child=NULL;
-            }
-            //find tail
-            while(curr->next!=NULL)
-            {
-                curr->next;
-            }
-            if(nextptr!=NULL){
-            curr->next=nextptr;
-            next->prev=curr;
+                Node* nextptr = curr->next;
+                
+                Node* childHead = flatten(curr->child);
+                curr->next = childHead;
+                childHead->prev = curr;
+                curr->child = nullptr;
 
-}        }
-    curr=curr->next
+                Node* tail = childHead;
+                while (tail->next != nullptr)
+                    tail = tail->next;
+
+                if (nextptr != nullptr)
+                {
+                    tail->next = nextptr;
+                    nextptr->prev = tail;
+                }
+            }
+            curr = curr->next;
+        }
+
+        return head;
     }
-    return head;
 };
