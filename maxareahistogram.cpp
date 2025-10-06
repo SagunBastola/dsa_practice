@@ -1,3 +1,7 @@
+#include<iostream>
+#include<stack>
+#include<vector>
+using namespace std;
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
@@ -7,11 +11,11 @@ public:
         vector<int> left(n,-1);
         for(int i=n-1;i>=0 ;i--)
         {
-            if(s.size()>0 && heights[s.top()]>=heights[i])
+            while(s.size()>0 && heights[s.top()]>=heights[i])
             {
                 s.pop();
             }
-            rights[i]=s.empty() ? n : s.top();
+            right[i]=s.empty() ? n : s.top();
             s.push(i);
         }
         while(!s.empty())
@@ -20,17 +24,17 @@ public:
         }
         for(int i=0;i<n ;i++)
         {
-            if(s.size()>0 && heights[s.top()]>=heights[i])
+            while(s.size()>0 && heights[s.top()]>=heights[i])
             {
                 s.pop();
             }
-            left[i]=s.empty() ? n : s.top();
+            left[i]=s.empty() ? -1 : s.top();
             s.push(i);
         }
         int ans=0;
         for(int i=0;i<n;i++)
         {
-            int width=right[i]-left[i];
+            int width=right[i]-left[i]-1;
             int area=heights[i]*width;
             ans=max(ans,area);
         }
