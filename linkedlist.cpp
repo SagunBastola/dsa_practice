@@ -35,23 +35,30 @@ public:
     {
         if (head == NULL)
         {
-            return NULL;
+            return head;
         }
         int count = 0;
         ListNode *temp1 = head;
-        while (temp1->next != NULL)
+        while (temp1 != NULL)
         {
             count += 1;
             temp1 = temp1->next;
         }
-        if (count > n)
+        if (count < n)
         {
-            return NULL;
+            return head;
+        }
+        if (count == n)
+        {
+            ListNode *temp = head;
+            head = head->next;
+            delete temp;
+            return head;
         }
         ListNode *temp = head;
         int nth = count - n;
         count = 0;
-        while (count != (nth - 1))
+        while (count != (nth - 1) && temp != NULL)
         {
             temp = temp->next;
 
