@@ -4,34 +4,21 @@
 #include<cmath>
 using namespace std;
 
-void helper(int x,int n,int& sum)
+void helper(int x,int n,int start,int& sum)
 {
-    int start=1;
-    int end=x/2;
-    while(start<=end)
+    if(x==0)
     {
-        if(pow(start,n)+pow(end,n)==x)
-        {
-            sum++;
-            helper(start,n,sum);
-            helper(end,n,sum);
-            start++;
-            end--;
-        }
-        else if(pow(start,n)+pow(end,n)<x)
-        {
-            start++;
-        }
-        else
-        {
-            end--;
-        }
-        
+        sum++;
+        return;
+    }
+    for(int i=start;pow(i,n)<=x;i++)
+    {
+        helper(x-pow(i,n),n,i+1,sum);
     }
 }
 int powerSum(int X, int N) {
     int sum=0;
-    helper(X,N,sum);
+    helper(X,N,1,sum);
     return sum;
 }
 int main()
