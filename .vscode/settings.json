@@ -8,6 +8,7 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "unordered_map": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "typeinfo": "cpp"
     }
 }
