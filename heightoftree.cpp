@@ -18,3 +18,7 @@ int height(node* root)
     int right=height(root->right);
     return max(left,right)+1;
 }
+int main()
+{
+    
+}
