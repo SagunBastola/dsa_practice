@@ -21,28 +21,14 @@ struct TreeNode
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
-class Solution
-{
+class Solution {
 public:
-    bool identical(TreeNode *root, TreeNode *subroot)
-    {
+    bool isSameTree(TreeNode* root, TreeNode* subroot) {
         if (root == NULL || subroot == NULL)
         {
             return root == subroot;
         }
-        return (root->val == subroot->val) && identical(root->left, subroot->left) && identical(root->right, subroot->right);
-    }
-    bool isSubtree(TreeNode *root, TreeNode *subroot)
-    {
-        if (root == NULL || subroot == NULL)
-        {
-            return root == subroot;
-        }
-        if (root->val == subroot->val && identical(root, subroot))
-        {
-            return true;
-        }
-        return (isSubtree(root->left, subroot) || isSubtree(root->right, subroot));
+        return (root->val == subroot->val) && isSameTree(root->left, subroot->left) && isSameTree(root->right, subroot->right);
     }
 };
 int main()
