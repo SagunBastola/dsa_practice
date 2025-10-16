@@ -30,6 +30,7 @@ public:
         {
             TreeNode *curr = q.front().first;
             distance = q.front().second;
+            q.pop();
             if (m.find(distance) == m.end())
             {
                 m[distance] = curr->val;
