@@ -1,3 +1,6 @@
+#include <iostream>
+#include <vector>
+using namespace std;
 class Solution
 {
 public:
@@ -64,6 +67,7 @@ public:
             }
             return false;
         }
+        return true;
     }
     void solveSudoku(vector<vector<char>> &board)
     {
