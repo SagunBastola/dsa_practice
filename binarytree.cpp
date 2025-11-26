@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <map>
 using namespace std;
 class node
 {
@@ -114,11 +115,57 @@ bool identical(node *root1, node *root2)
     right = identical(root1->right, root2->right);
     return left && right;
 }
-bool issubroot(node* root,node* subtree)
+bool issubroot(node *root, node *subtree)
 {
-    if(root==NULL || subtree==NULL) return (root==subtree);
-    if(root->data==subtree->data) return identical(root,subtree);
-    return issubroot(root->left,subtree)|| issubroot(root->right,subtree);
+    if (root == NULL || subtree == NULL)
+        return (root == subtree);
+    if (root->data == subtree->data)
+        return identical(root, subtree);
+    return issubroot(root->left, subtree) || issubroot(root->right, subtree);
+}
+int diameter(node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    int left = diameter(root->left);
+    int right = diameter(root->right);
+    int current = height(root->left) + height(root->right);
+    return max(max(left, right), current);
+}
+int ans = 0;
+int dia(node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    int left = dia(root->left);
+    int right = dia(root->right);
+    ans = max(ans, max(left, right) + 1);
+    return ans;
+}
+void topview(node *root)
+{
+    queue<pair<node *, int>> q;
+    map<int, int> m;
+    q.push({root, 0});
+    while (q.size() > 0)
+    {
+        pair<node *, int> curr = q.front();
+        q.pop();
+        if (m.find(curr.second) != m.end())
+        {
+            continue;
+        }
+        cout<<curr.first->data<<" ";
+        m[curr.second] = 1;
+        if (curr.first->left != NULL)
+            q.push({curr.first->left, curr.second - 1});
+        if (curr.first->right != NULL)
+            q.push({curr.first->right, curr.second + 1});
+    }
 }
 int main()
 {
@@ -143,7 +190,11 @@ int main()
     idx = -1;
     vector<int> sequen2 = {3, 4, -1, -1, 5, -1, -1};
     node *root3 = preorder(sequen2);
+    cout << endl;
+    cout << issubroot(root, root3);
+    cout << endl;
+    cout << dia(root);
     cout<<endl;
-    cout<<issubroot(root,root3);
+    topview(root);
     return -1;
 }
