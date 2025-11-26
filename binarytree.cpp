@@ -171,12 +171,23 @@ void printk(node *root, int k)
 {
     if (root == NULL)
         return;
-    if (k < 0)
+    if (k < 1)
         return;
     if (k == 1)
         cout << root->data << " ";
     printk(root->left, k - 1);
     printk(root->right, k - 1);
+}
+void sumk(node* root,map<int,int>& m,int k)
+{
+    if(root==NULL) return;
+    if(m.find(k)==m.end())
+    {
+        m[k]=0;
+    }
+    m[k]+=root->data;
+    sumk(root->right,m,k+1);
+    sumk(root->left,m,k+1);
 }
 int main()
 {
@@ -208,7 +219,15 @@ int main()
     cout << endl;
     topview(root);
     cout<<endl;
-    printk(root,3);
-
+    printk(root,2);
+    map<int,int> m;
+    sumk(root,m,0);
+    int max1=0;
+    cout<<endl;
+    for(int i=0;i<m.size();i++)
+    {
+        max1=max(max1,m[i]);
+    }
+    cout<<max1;
     return -1;
 }
