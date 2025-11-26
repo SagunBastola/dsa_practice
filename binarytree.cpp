@@ -159,13 +159,24 @@ void topview(node *root)
         {
             continue;
         }
-        cout<<curr.first->data<<" ";
+        cout << curr.first->data << " ";
         m[curr.second] = 1;
         if (curr.first->left != NULL)
             q.push({curr.first->left, curr.second - 1});
         if (curr.first->right != NULL)
             q.push({curr.first->right, curr.second + 1});
     }
+}
+void printk(node *root, int k)
+{
+    if (root == NULL)
+        return;
+    if (k < 0)
+        return;
+    if (k == 1)
+        cout << root->data << " ";
+    printk(root->left, k - 1);
+    printk(root->right, k - 1);
 }
 int main()
 {
@@ -194,7 +205,10 @@ int main()
     cout << issubroot(root, root3);
     cout << endl;
     cout << dia(root);
-    cout<<endl;
+    cout << endl;
     topview(root);
+    cout<<endl;
+    printk(root,3);
+
     return -1;
 }
