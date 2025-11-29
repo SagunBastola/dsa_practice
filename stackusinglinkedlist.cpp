@@ -1,91 +1,47 @@
 #include<iostream>
+#include<vector>
+#include<list>
 using namespace std;
-class node
+class stack
 {
-public:
-    int val;
-    node *next;
-    node *prev;
-
-    node(int a) : val(a), next(NULL), prev(NULL)
+    private:
+    list<int> l;
+    public:
+    void push(int val)
     {
+        l.push_front(val);
+
     }
+    void pop()
+    {
+        if(l.size()==0)
+        {
+            cout<<"error in the poping";
+            return;
+        }
+        l.pop_front();
+    } 
+    int top()
+    {
+        return l.front();
+    }
+    bool empty()
+    {
+        if(l.size()==0)
+        {
+            return true;
+        }
+        return  false;
+    }
+
 };
-class list
+int main()
 {
-private:
-    node *head;
-    node *tail;
-
-public:
-    list()
-    {
-        head = tail = NULL;
-    }
-    void push_front(int val)
-    {
-        if (head == NULL)
-        {
-            node *newnode = new node(val);
-            head = tail = newnode;
-            return;
-        }
-        else
-        {
-            node *newnode = new node(val);
-            newnode->next = head;
-            head = newnode;
-            return;
-        }
-    }
-    void push_back(int val)
-    {
-        node* newnode=new node(val);
-        if(head==NULL)
-        {
-            head = tail = newnode;
-        }
-        else
-        {
-            tail->next=newnode;
-            tail=newnode;
-        }
-    }
-    void print_list()
-    {
-        node* temp;
-        temp=head;
-        while(temp!=NULL)
-        {
-            cout<<temp->val<<" ";
-            temp=temp->next;
-        }
-        cout<<endl;
-    }
-    void insert(int val,int pos)
-    {
-        if(pos<0)
-        {
-            cout<<"INVALID \n"<<endl;
-            return;
-        }
-        if(pos==0)
-        {
-            push_front(val);
-            return;
-        }
-        node* temp=head;
-        for(int i=0;i<pos-1;i++)
-        {
-            if(temp==NULL)
-            {
-                cout<<"invalid position \n";
-                return;
-            }
-            temp=temp->next;
-        }
-        node* newnode=new node(val);
-        newnode->next=temp->next;
-        temp->next=newnode;
-    }
-};
+    stack s1;
+    
+    s1.push(6);
+    s1.push(5);
+    s1.pop();
+    cout<<s1.top();
+    return 0;
+}
