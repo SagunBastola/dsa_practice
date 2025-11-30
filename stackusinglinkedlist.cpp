@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<list>
+#include<queue>
 using namespace std;
 class stack
 {
@@ -43,5 +44,7 @@ int main()
     s1.push(5);
     s1.pop();
     cout<<s1.top();
+    queue<int> q;
+    
     return 0;
 }
