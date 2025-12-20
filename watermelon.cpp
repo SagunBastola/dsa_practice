@@ -1,12 +1,15 @@
 #include<iostream>
 using namespace std;
-bool main(int val)
+int main()
 {
-    if(val %2 == 0 && val != 2 )
+    int val;
+    cin>>val;
+    if(val % 2 ==0 && val != 2)
     {
-        return true;
+        cout<<"Yes";
+
     }
     else{
-        return false;
+        cout<<"No";
     }
 }
