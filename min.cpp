@@ -34,19 +34,27 @@ public:
         }
         return true;
     }
-    int minOperations(vector<int> &nums)
-    {
-        unordered_set<int> uniqueset(nums.begin(),nums.end())
-        if(uniqueset.size() == nums.size())
-        {
+    int minOperations(vector<int>& nums) {
+        unordered_set<int> uniqueset(nums.begin(), nums.end());
+        if (uniqueset.size() == nums.size()) {
             return 0;
         }
-        if(nums.size()<3)
-        {
+        if (nums.size() < 3) {
             return 1;
         }
-        int count = 0;
-        helper(nums, 0, count);
+        int i=3;
+        int count = 1;
+        while (i<nums.size()) {
+            if (nums.size() <= i) {
+                break;
+            }
+            unordered_set<int> uniqueset(nums.begin() + i, nums.end());
+            if (uniqueset.size() == nums.size() - i) {
+                break;
+            }
+            count++;
+            i=i+3;
+        }
         return count;
     }
 };
