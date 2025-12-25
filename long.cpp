@@ -5,9 +5,11 @@ class Solution
 public:
     int longestSubarray(vector<int> nums, int k)
     {
+        
         int len=0;
         int s=0;
         int n=nums.size();
+        
         for(int i=0;i<n;i++)
         {   s=0;
             for(int j=i;j<n;j++)
