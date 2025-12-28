@@ -92,7 +92,6 @@ void printResult(const vector<int>& result) {
 }
 
 int main() {
-    // Creating a sample binary tree
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
@@ -101,10 +100,8 @@ int main() {
     root->right->left = new Node(6);
     root->right->right = new Node(7);
 
-    // Get the boundary traversal
     vector<int> result = printBoundary(root);
 
-    // Print the result
     cout << "Boundary Traversal: ";
     printResult(result);
 
