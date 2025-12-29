@@ -59,3 +59,14 @@ public:
         return ans;
     }
 };
+int main()
+{
+    int n;
+    cin>>n;
+    vector<vector<string>> ans;
+    Solution s1;
+
+    ans=s1.solveNQueens(n);
+    cout<<n;
+    return 1;
+}
