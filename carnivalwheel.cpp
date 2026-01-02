@@ -11,11 +11,10 @@ int main()
         cin >> a;
         cin >> b;
         int ans = 0;
-        for (int i = 0; i < l/b; i++)
+        for (int i = 0; i < l; i++)
         {
             ans = max(ans, (a + b * (i + 1)) % l);
         }
-
         cout << ans << endl;
     }
 }
