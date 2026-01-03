@@ -1,9 +1,13 @@
-4
-4
-amir rima amin nima
+6
 1
-codeforces
+1
 3
-a ab abc
+101
+4
+0110
+11
+10101010100
 2
-b ba
+11
+12
+010010001100
