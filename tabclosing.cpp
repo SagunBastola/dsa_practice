@@ -6,9 +6,16 @@ int main()
     cin>>t;
     while(t--)
     {
-        int a;
-        int b;
-        int n;
+        long long int a;
+        long long int b;
+        long long int n;
         cin>>a>>b>>n;
+        if((long long )b*n <=(long long )a || b==a)
+        {
+            cout<<1<<endl;
+        }
+        else{
+            cout<<2<<endl;
+        }
     }
 }
