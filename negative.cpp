@@ -10,7 +10,7 @@ int main()
         cin>>n;
         vector<int> vec(n);
         int neg=0;
-        int sum=0;
+        long long int sum=0;
         for(int i=0;i<n;i++)
         {
             cin>>vec[i];
@@ -19,7 +19,7 @@ int main()
                 neg++;
                 vec[i]=-vec[i];
             }
-            sum+=vec[i];
+            sum+=(1ll)*vec[i];
         }
         sort(vec.begin(),vec.end());
         if(neg % 2 != 0)
