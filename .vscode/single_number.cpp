@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ans=0;
+        for(int bitindex=0;bitindex<32;bitindex++)
+        {
+            int cnt=0;
+            for(int i=0;i<nums.size();i++)
+            {
+                if(nums[i] & (1<<bitindex))
+                {
+                    cnt++;
+                }
+            }
+            if(cnt%3 == 1)
+            {
+                ans=ans|(1<<bitindex);
+            }
+        }
+        return ans;
+    }
+};
+int main()
+{
+    vector<int> nums={1,1,1,2,3,4,4,4,3,3};
+    Solution s1;
+    cout<<s1.singleNumber(nums);
+}
