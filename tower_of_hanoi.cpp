@@ -4,7 +4,7 @@ using namespace std;
 void toh(int n, string start, string middle, string end)
 {
     // base case
-    if (n == 0)
+    if (n <= 0)
     {
         return;
     }
@@ -22,12 +22,10 @@ void toh(int n, string start, string middle, string end)
 int main()
 {
     //input
-
     int n;
     cin>>n;
 
     // function call
-
     toh(n,"A","B","C");
 
     return 1;
