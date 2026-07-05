@@ -1,5 +1,26 @@
 #include <bits/stdc++.h>
+using ll = long long;
 using namespace std;
+#define rep(i, m, n) for (ll i = m; i < n; i++)
+#define repr(i, m, n) for (ll i = m; i >= n; i--)
+template<typename T>
+istream& operator>>(istream &s, vector<T> &v)
+{
+    for(auto &x : v)
+        s >> x;
+    return s;
+}
+template<typename T>
+ostream& operator<<(ostream& s,vector<T> &v)
+{
+    for(auto &x : v)
+    {   
+        s<<x<<" ";
+    }
+    return s;
+}
+#define vi vector<ll>
+#define pi pair<ll,ll>
 string solve(string s)
 {
     stack<char> st;
@@ -8,7 +29,7 @@ string solve(string s)
     unordered_set<char> low1 = {'+', '-'};
     string result = "";
 
-    for (int i = 0; i < s.size(); i++)
+    rep(i,0,s.size())
     {
         if (unst.find(s[i]) == unst.end())
         {

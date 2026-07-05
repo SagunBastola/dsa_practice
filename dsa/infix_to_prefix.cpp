@@ -1,69 +1,76 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+int precedence(char c)
+{
+    if (c == '^') return 3;
+    if (c == '*' || c == '/') return 2;
+    if (c == '+' || c == '-') return 1;
+    return -1;
+}
+
 string solve(string s)
 {
     reverse(s.begin(), s.end());
-    stack<char> st;
-    unordered_set<char> unst = {'+', '-', '*', '^', '/', '(', ')'};
-    unordered_set<char> high1 = {'*', '^', '/'};
-    unordered_set<char> low1 = {'+', '-'};
-    string result = "";
 
-    for (int i = 0; i < s.size(); i++)
+    for (char &c : s)
     {
-        if (unst.find(s[i]) == unst.end())
-        {
-            result += s[i];
-            continue;
-        }
-        if (s[i] == ')')
-        {
-            st.push(s[i]);
-            continue;
-        }
-        if (s[i] == '(')
-        {
-            while (st.top() != ')')
-            {
-                result += st.top();
-                st.pop();
-            }
-            st.pop();
-            continue;
-        }
-        if (high1.find(s[i]) != high1.end())
-        {
-            while (!(st.empty()) && (st.top() == '/' || st.top() == '*' || st.top() == '^'))
-            {
-                result += st.top();
-                st.pop();
-            }
-            st.push(s[i]);
-            continue;
-        }
+        if (c == '(')
+            c = ')';
+        else if (c == ')')
+            c = '(';
+    }
 
-        if (low1.find(s[i]) != low1.end())
+    stack<char> st;
+    string postfix = "";
+
+    for (char c : s)
+    {
+        if (isalnum(c))
         {
-            while (!(st.empty()) && (st.top() == '/' || st.top() == '*' || st.top() == '^' || st.top() == '+' || st.top() == '-'))
+            postfix += c;
+        }
+        else if (c == '(')
+        {
+            st.push(c);
+        }
+        else if (c == ')')
+        {
+            while (!st.empty() && st.top() != '(')
             {
-                result += st.top();
+                postfix += st.top();
                 st.pop();
             }
-            st.push(s[i]);
-            continue;
+            if (!st.empty())
+                st.pop();
+        }
+        else
+        {
+            while (!st.empty() &&
+                   ((precedence(st.top()) > precedence(c)) ||
+                    (precedence(st.top()) == precedence(c) && c == '^')) &&
+                   st.top() != '(')
+            {
+                postfix += st.top();
+                st.pop();
+            }
+            st.push(c);
         }
     }
+
     while (!st.empty())
     {
-        result += st.top();
+        postfix += st.top();
         st.pop();
     }
-    reverse(result.begin(), result.end());
-    return result;
+
+    reverse(postfix.begin(), postfix.end());
+    return postfix;
 }
+
 int main()
 {
     string s;
     cin >> s;
-    cout << solve(s) << endl;
+    cout << solve(s);
 }
